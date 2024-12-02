@@ -7,7 +7,7 @@
 
 ### Day_2 :
 
-    Part_1 = NOK
+    Part_1 = OK
     Part_2 = NOK
 ### Day_3 :
 
