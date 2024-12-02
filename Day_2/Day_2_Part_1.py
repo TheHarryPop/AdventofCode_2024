@@ -1006,10 +1006,7 @@ inps = """22 25 27 28 30 31 32 29
 36 35 32 31 28
 93 91 90 89 86 85 82 80"""
 
-
-# suites = [ligne.replace(' ', ',') for ligne in inps.split('\n')]
 suites = [ligne  for ligne in inps.split('\n')]
-print(suites)
 
 lst_i = []
 lst_digit = []
@@ -1028,7 +1025,6 @@ for suite in suites:
                 sens += 1
             else:
                 sens -=1
-
             lst_i.append(i)
             lst_digit.append(digit)
         else:
