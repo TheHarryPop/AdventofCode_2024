@@ -1,11 +1,11 @@
-# inps = """7 6 4 2 1
-# 1 2 7 8 9
-# 9 7 6 2 1
-# 1 3 2 4 5
-# 8 6 4 4 1
-# 1 3 6 7 9"""
+inps = """7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9"""
 
-inps = """22 25 27 28 30 31 32 29
+inps_2 = """22 25 27 28 30 31 32 29
 72 74 75 77 80 81 81
 52 53 55 58 59 63
 14 17 19 22 27
@@ -1013,10 +1013,22 @@ lst_digit = []
 sens = 0
 cass = False
 res = 0
+supp = 0
 
 for suite in suites:
     for i,digit in enumerate(suite.split(' ')):
+        print(f'i={i}')
+        print(f'digit = {digit}')
         if not lst_i:
+            lst_i.append(i)
+            lst_digit.append(digit)
+        elif (-4 > (abs(int(digit)) - abs(int(lst_digit[i - 1]))) or (abs(int(digit)) - abs(int(lst_digit[i - 1]))) < 4) and supp == 0 and (abs(int(digit)) - abs(int(lst_digit[i - 1]))) != 0:
+            print('icicicicici')
+            supp = 1
+            if abs(int(digit)) > abs(int(lst_digit[i - 1])):
+                sens += 1
+            else:
+                sens -=1
             lst_i.append(i)
             lst_digit.append(digit)
         elif (-4 < (abs(int(digit)) - abs(int(lst_digit[i - 1]))) < 4 and
@@ -1031,12 +1043,13 @@ for suite in suites:
             cass = True
             break
     if not cass:
-        if len(lst_i)-1 == abs(sens):
+        if len(lst_i)-1 == abs(sens) or len(lst_i)-1 == (abs(sens) + 1) or len(lst_i)-1 == (abs(sens) - 1):
             res += 1
-
+    print('____________________________________________________')
     lst_digit = []
     lst_i = []
     cass = False
     sens = 0
+    supp = 0
 
 print(f'res = {res}')
