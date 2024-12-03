@@ -1014,42 +1014,55 @@ sens = 0
 cass = False
 res = 0
 supp = 0
+corr_i = 0
 
 for suite in suites:
+    print(f'NEWWWWWWW SUITTTTTTTTTTTTTTTTTTTE : {suite}')
     for i,digit in enumerate(suite.split(' ')):
+        print('**************')
         print(f'i={i}')
         print(f'digit = {digit}')
+        if lst_i and lst_digit:
+            print(f'digit précédent = {lst_digit[i + corr_i - 1]}')
         if not lst_i:
             lst_i.append(i)
             lst_digit.append(digit)
-        elif (-4 > (abs(int(digit)) - abs(int(lst_digit[i - 1]))) or (abs(int(digit)) - abs(int(lst_digit[i - 1]))) < 4) and supp == 0 and (abs(int(digit)) - abs(int(lst_digit[i - 1]))) != 0:
-            print('icicicicici')
+        elif ((-4 > (abs(int(digit)) - abs(int(lst_digit[i + corr_i - 1]))) or
+               (abs(int(digit)) - abs(int(lst_digit[i + corr_i - 1]))) > 4 or
+               (abs(int(digit)) - abs(int(lst_digit[i + corr_i - 1]))) == 0) and supp == 0 ):
             supp = 1
-            if abs(int(digit)) > abs(int(lst_digit[i - 1])):
+            if abs(int(digit)) > abs(int(lst_digit[i + corr_i - 1])):
                 sens += 1
             else:
                 sens -=1
-            lst_i.append(i)
-            lst_digit.append(digit)
-        elif (-4 < (abs(int(digit)) - abs(int(lst_digit[i - 1]))) < 4 and
-              (abs(int(digit)) - abs(int(lst_digit[i - 1]))) != 0) :
-            if abs(int(digit)) > abs(int(lst_digit[i - 1])):
+            corr_i = -1
+            # lst_i.append(i)
+            # lst_digit.append(digit)
+        elif -4 < (abs(int(digit)) - abs(int(lst_digit[i + corr_i - 1]))) < 4 and (abs(int(digit)) - abs(int(lst_digit[i + corr_i - 1]))) != 0 :
+            if abs(int(digit)) > abs(int(lst_digit[i + corr_i - 1])):
                 sens += 1
             else:
                 sens -=1
             lst_i.append(i)
             lst_digit.append(digit)
         else:
+            print('lala')
             cass = True
             break
     if not cass:
+        print(f'lst_i len = {len(lst_i) - 1}')
+        print(f'abs(sens) len = {abs(sens)}')
         if len(lst_i)-1 == abs(sens) or len(lst_i)-1 == (abs(sens) + 1) or len(lst_i)-1 == (abs(sens) - 1):
             res += 1
+            print('OKOKOKOK')
+
+    print(f'supp = {supp}')
     print('____________________________________________________')
     lst_digit = []
     lst_i = []
     cass = False
     sens = 0
     supp = 0
+    corr_i = 0
 
 print(f'res = {res}')
