@@ -1019,11 +1019,6 @@ corr_i = 0
 for suite in suites:
     print(f'NEWWWWWWW SUITTTTTTTTTTTTTTTTTTTE : {suite}')
     for i,digit in enumerate(suite.split(' ')):
-        print('**************')
-        print(f'i={i}')
-        print(f'digit = {digit}')
-        if lst_i and lst_digit:
-            print(f'digit précédent = {lst_digit[i + corr_i - 1]}')
         if not lst_i:
             lst_i.append(i)
             lst_digit.append(digit)
@@ -1036,9 +1031,8 @@ for suite in suites:
             else:
                 sens -=1
             corr_i = -1
-            # lst_i.append(i)
-            # lst_digit.append(digit)
-        elif -4 < (abs(int(digit)) - abs(int(lst_digit[i + corr_i - 1]))) < 4 and (abs(int(digit)) - abs(int(lst_digit[i + corr_i - 1]))) != 0 :
+        elif (-4 < (abs(int(digit)) - abs(int(lst_digit[i + corr_i - 1]))) < 4 and
+              (abs(int(digit)) - abs(int(lst_digit[i + corr_i - 1]))) != 0) :
             if abs(int(digit)) > abs(int(lst_digit[i + corr_i - 1])):
                 sens += 1
             else:
@@ -1046,7 +1040,6 @@ for suite in suites:
             lst_i.append(i)
             lst_digit.append(digit)
         else:
-            print('lala')
             cass = True
             break
     if not cass:
